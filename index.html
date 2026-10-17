@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echo App</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 520px;
+      margin: 80px auto;
+      padding: 0 20px;
+      background: #f5f7fa;
+      color: #1a1a2e;
+    }
+    h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    p.sub { color: #64748b; margin-top: 0; font-size: 0.95rem; }
+    input, button {
+      font-size: 1rem;
+      padding: 12px 14px;
+      border-radius: 8px;
+      width: 100%;
+    }
+    input {
+      border: 1px solid #cbd5e1;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    input:focus { border-color: #2563eb; }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover { background: #1d4ed8; }
+    #output {
+      margin-top: 20px;
+      padding: 16px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      min-height: 24px;
+      word-break: break-word;
+      font-size: 1rem;
+    }
+    #output.empty { color: #94a3b8; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Echo App</h1>
+  <p class="sub">Type anything below and it will be echoed back to you.</p>
+
+  <input id="userInput" type="text" placeholder="Type something..." autofocus />
+  <button onclick="echoInput()">Echo It</button>
+  <div id="output" class="empty">Your echoed text will appear here.</div>
+
+  <script>
+    const input = document.getElementById('userInput');
+    const output = document.getElementById('output');
+
+    function echoInput() {
+      const value = input.value.trim();
+      if (!value) {
+        output.textContent = 'Please enter something first.';
+        output.classList.add('empty');
+        return;
+      }
+      output.textContent = 'You typed: ' + value;
+      output.classList.remove('empty');
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') echoInput();
+    });
+  </script>
+</body>
+</html>
